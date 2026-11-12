@@ -1,0 +1,25 @@
+{
+  "labeled_postings": 8,
+  "assignment_requested_postings": 20,
+  "coverage": {
+    "accepted": 2,
+    "rejected": 4,
+    "not_extracted": 2
+  },
+  "overall_field_accuracy": 0.8229,
+  "field_accuracy": {
+    "company": 0.625,
+    "title": 0.75,
+    "seniority": 0.625,
+    "city": 0.875,
+    "country": 0.625,
+    "remote_policy": 0.75,
+    "salary_min": 1.0,
+    "salary_max": 1.0,
+    "currency": 0.875,
+    "employment_type": 0.75,
+    "visa_sponsorship": 1.0,
+    "posted_date": 1.0
+  },
+  "methodology": "Exact-match field comparison after limited normalization. Missing predictions count as empty values. An empty gold value represents information not specified in the source. Skills excluded from this report. This is a preliminary 8-posting evaluation, below the assignment's requested 20 postings."
+}

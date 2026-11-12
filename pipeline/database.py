@@ -142,6 +142,67 @@ ON CONFLICT(job_key) DO UPDATE SET
 """
 
 
+
+
+CREATE_CHANGE_HISTORY_SQL = """
+CREATE TABLE IF NOT EXISTS job_change_history (
+    change_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    job_key TEXT NOT NULL,
+    field_name TEXT NOT NULL,
+    old_value TEXT,
+    new_value TEXT,
+    changed_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (job_key) REFERENCES jobs(job_key)
+);
+"""
+
+TRACKED_FIELDS = (
+    "company",
+    "title",
+    "seniority",
+    "city",
+    "country",
+    "remote_policy",
+    "salary_min",
+    "salary_max",
+    "currency",
+    "employment_type",
+    "skills_json",
+    "visa_sponsorship",
+    "posted_date"
+)
+
+
+def create_change_history(connection):
+    connection.execute(CREATE_CHANGE_HISTORY_SQL)
+
+    connection.execute("""
+        CREATE INDEX IF NOT EXISTS idx_change_history_job
+        ON job_change_history(job_key, changed_at)
+    """)
+
+    for field in TRACKED_FIELDS:
+        connection.execute(f"""
+            CREATE TRIGGER IF NOT EXISTS track_job_{field}
+            AFTER UPDATE OF {field} ON jobs
+            WHEN OLD.{field} IS NOT NEW.{field}
+            BEGIN
+                INSERT INTO job_change_history (
+                    job_key,
+                    field_name,
+                    old_value,
+                    new_value
+                )
+                VALUES (
+                    NEW.job_key,
+                    '{field}',
+                    CAST(OLD.{field} AS TEXT),
+                    CAST(NEW.{field} AS TEXT)
+                );
+            END;
+        """)
+
+
 def utc_now():
     return datetime.now(
         timezone.utc
@@ -193,6 +254,8 @@ def create_database(connection):
 
     for statement in CREATE_INDEX_SQL:
         connection.execute(statement)
+
+    create_change_history(connection)
 
 
 def record_to_values(record):

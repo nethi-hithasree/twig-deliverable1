@@ -1,0 +1,97 @@
+evaluation_id,source,source_id,processing_status,field,gold_value,predicted_value,correct
+EVAL-01,hackernews,50344480,accepted,company,quantum rise,quantum rise,True
+EVAL-01,hackernews,50344480,accepted,title,agentic ai engineer,agentic ai engineer,True
+EVAL-01,hackernews,50344480,accepted,seniority,,,True
+EVAL-01,hackernews,50344480,accepted,city,chicago,chicago,True
+EVAL-01,hackernews,50344480,accepted,country,us,us,True
+EVAL-01,hackernews,50344480,accepted,remote_policy,remote,remote,True
+EVAL-01,hackernews,50344480,accepted,salary_min,,,True
+EVAL-01,hackernews,50344480,accepted,salary_max,,,True
+EVAL-01,hackernews,50344480,accepted,currency,,,True
+EVAL-01,hackernews,50344480,accepted,employment_type,full_time,full_time,True
+EVAL-01,hackernews,50344480,accepted,visa_sponsorship,no,no,True
+EVAL-01,hackernews,50344480,accepted,posted_date,,,True
+EVAL-02,hackernews,50341662,accepted,company,reducto,reducto,True
+EVAL-02,hackernews,50341662,accepted,title,ml engineer,ml engineer,True
+EVAL-02,hackernews,50341662,accepted,seniority,,,True
+EVAL-02,hackernews,50341662,accepted,city,san francisco,san francisco,True
+EVAL-02,hackernews,50341662,accepted,country,us,us,True
+EVAL-02,hackernews,50341662,accepted,remote_policy,onsite,onsite,True
+EVAL-02,hackernews,50341662,accepted,salary_min,200000.0,200000.0,True
+EVAL-02,hackernews,50341662,accepted,salary_max,325000.0,325000.0,True
+EVAL-02,hackernews,50341662,accepted,currency,usd,,False
+EVAL-02,hackernews,50341662,accepted,employment_type,full_time,full_time,True
+EVAL-02,hackernews,50341662,accepted,visa_sponsorship,,,True
+EVAL-02,hackernews,50341662,accepted,posted_date,,,True
+EVAL-03,hackernews,50339441,rejected,company,lyra,lyra,True
+EVAL-03,hackernews,50339441,rejected,title,applied ai engineer,applied ai engineer,True
+EVAL-03,hackernews,50339441,rejected,seniority,,,True
+EVAL-03,hackernews,50339441,rejected,city,,,True
+EVAL-03,hackernews,50339441,rejected,country,us,,False
+EVAL-03,hackernews,50339441,rejected,remote_policy,remote,remote,True
+EVAL-03,hackernews,50339441,rejected,salary_min,,,True
+EVAL-03,hackernews,50339441,rejected,salary_max,,,True
+EVAL-03,hackernews,50339441,rejected,currency,,,True
+EVAL-03,hackernews,50339441,rejected,employment_type,full_time,full_time,True
+EVAL-03,hackernews,50339441,rejected,visa_sponsorship,,,True
+EVAL-03,hackernews,50339441,rejected,posted_date,,,True
+EVAL-04,hackernews,50340892,not_extracted,company,ledgebrook,,False
+EVAL-04,hackernews,50340892,not_extracted,title,principal data engineer,,False
+EVAL-04,hackernews,50340892,not_extracted,seniority,principal,,False
+EVAL-04,hackernews,50340892,not_extracted,city,,,True
+EVAL-04,hackernews,50340892,not_extracted,country,us,,False
+EVAL-04,hackernews,50340892,not_extracted,remote_policy,remote,,False
+EVAL-04,hackernews,50340892,not_extracted,salary_min,,,True
+EVAL-04,hackernews,50340892,not_extracted,salary_max,,,True
+EVAL-04,hackernews,50340892,not_extracted,currency,,,True
+EVAL-04,hackernews,50340892,not_extracted,employment_type,,,True
+EVAL-04,hackernews,50340892,not_extracted,visa_sponsorship,,,True
+EVAL-04,hackernews,50340892,not_extracted,posted_date,,,True
+EVAL-05,hackernews,50339641,rejected,company,cnh,cnh,True
+EVAL-05,hackernews,50339641,rejected,title,ai engineer intern,ai engineer intern,True
+EVAL-05,hackernews,50339641,rejected,seniority,intern,,False
+EVAL-05,hackernews,50339641,rejected,city,tempe,tempe,True
+EVAL-05,hackernews,50339641,rejected,country,us,us,True
+EVAL-05,hackernews,50339641,rejected,remote_policy,onsite,onsite,True
+EVAL-05,hackernews,50339641,rejected,salary_min,,,True
+EVAL-05,hackernews,50339641,rejected,salary_max,,,True
+EVAL-05,hackernews,50339641,rejected,currency,,,True
+EVAL-05,hackernews,50339641,rejected,employment_type,internship,intern,False
+EVAL-05,hackernews,50339641,rejected,visa_sponsorship,no,no,True
+EVAL-05,hackernews,50339641,rejected,posted_date,,,True
+EVAL-06,hackernews,50340551,rejected,company,helmsted,helmsted,True
+EVAL-06,hackernews,50340551,rejected,title,founding ai engineer,founding ai engineer,True
+EVAL-06,hackernews,50340551,rejected,seniority,,staff_plus,False
+EVAL-06,hackernews,50340551,rejected,city,,,True
+EVAL-06,hackernews,50340551,rejected,country,us,us,True
+EVAL-06,hackernews,50340551,rejected,remote_policy,remote,remote,True
+EVAL-06,hackernews,50340551,rejected,salary_min,160000.0,160000.0,True
+EVAL-06,hackernews,50340551,rejected,salary_max,200000.0,200000.0,True
+EVAL-06,hackernews,50340551,rejected,currency,usd,usd,True
+EVAL-06,hackernews,50340551,rejected,employment_type,full_time,full_time,True
+EVAL-06,hackernews,50340551,rejected,visa_sponsorship,,,True
+EVAL-06,hackernews,50340551,rejected,posted_date,,,True
+EVAL-07,hackernews,50369581,not_extracted,company,oscilar,,False
+EVAL-07,hackernews,50369581,not_extracted,title,sr./staff analytics & data architecture engineer,,False
+EVAL-07,hackernews,50369581,not_extracted,seniority,,,True
+EVAL-07,hackernews,50369581,not_extracted,city,,,True
+EVAL-07,hackernews,50369581,not_extracted,country,us,,False
+EVAL-07,hackernews,50369581,not_extracted,remote_policy,remote,,False
+EVAL-07,hackernews,50369581,not_extracted,salary_min,,,True
+EVAL-07,hackernews,50369581,not_extracted,salary_max,,,True
+EVAL-07,hackernews,50369581,not_extracted,currency,,,True
+EVAL-07,hackernews,50369581,not_extracted,employment_type,full_time,,False
+EVAL-07,hackernews,50369581,not_extracted,visa_sponsorship,,,True
+EVAL-07,hackernews,50369581,not_extracted,posted_date,,,True
+EVAL-08,hackernews,50342858,rejected,company,consumer physical ai,,False
+EVAL-08,hackernews,50342858,rejected,title,ai engineer,ai engineer,True
+EVAL-08,hackernews,50342858,rejected,seniority,,,True
+EVAL-08,hackernews,50342858,rejected,city,,california,False
+EVAL-08,hackernews,50342858,rejected,country,us,us,True
+EVAL-08,hackernews,50342858,rejected,remote_policy,remote,remote,True
+EVAL-08,hackernews,50342858,rejected,salary_min,,,True
+EVAL-08,hackernews,50342858,rejected,salary_max,,,True
+EVAL-08,hackernews,50342858,rejected,currency,,,True
+EVAL-08,hackernews,50342858,rejected,employment_type,full_time,full_time,True
+EVAL-08,hackernews,50342858,rejected,visa_sponsorship,,,True
+EVAL-08,hackernews,50342858,rejected,posted_date,,,True

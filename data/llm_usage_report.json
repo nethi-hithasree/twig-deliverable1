@@ -1,0 +1,13 @@
+{
+  "cache_files": 128,
+  "models": {
+    "gemini-3.5-flash-lite": {
+      "calls": 128,
+      "input_tokens": 190613,
+      "output_tokens": 49491,
+      "total_tokens": 240104,
+      "jobs_returned": 122
+    }
+  },
+  "note": "Token counts are from cached Gemini responses. These are observed token usage totals, not USD costs. Pricing must be verified separately."
+}

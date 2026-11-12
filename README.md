@@ -770,3 +770,87 @@ The project demonstrates an end-to-end workflow
 for collecting and processing public job data,
 with documented limitations and reproducible
 local execution steps.
+
+
+## 20. Final Evaluation and Change-Tracking Results
+
+### Manual Extraction Evaluation
+
+A 20-posting evaluation template was prepared, including
+10 Hacker News postings and 10 Greenhouse postings.
+
+Manual labeling was completed for 8 Hacker News postings.
+
+| Metric | Result |
+|---|---:|
+| Evaluation template size | 20 |
+| Manually labeled postings | 8 |
+| Accepted labeled postings | 2 |
+| Rejected labeled postings | 4 |
+| Not extracted | 2 |
+| Preliminary field-level agreement | 82.29% |
+
+The preliminary agreement measures normalized field matches
+across 12 fields, including matches where both values are
+missing. It excludes skills and should not be interpreted
+as end-to-end extraction accuracy.
+
+Evaluation artifacts:
+- `data/evaluation_20_template.csv`
+- `data/evaluation_accuracy.csv`
+- `data/evaluation_summary.json`
+
+### LLM Token Usage
+
+Cached Gemini responses recorded the following usage:
+
+| Metric | Result |
+|---|---:|
+| Model | gemini-3.5-flash-lite |
+| Cached responses | 128 |
+| Input tokens | 190,613 |
+| Output tokens | 49,491 |
+| Total tokens | 240,104 |
+| Jobs returned by cached responses | 122 |
+
+The separate cost tracker reports 127 records and 238,937
+tokens. These totals differ because the reports cover
+different sets of cached records.
+
+USD cost per posting is not reported because verified
+model pricing has not been configured.
+
+Reports:
+- `data/llm_usage_report.json`
+- `data/cost_report.json`
+
+### SQLite Change History
+
+The database now includes a `job_change_history` table
+and 13 SQLite triggers for recording changes to tracked
+job fields.
+
+A transaction-based test confirmed that changing a job's
+city produces a history record. The test transaction was
+rolled back, preserving all 30 existing jobs.
+
+Job closure detection is not yet implemented.
+
+### Final Verification
+
+- 30 unique jobs stored in SQLite
+- 30 jobs exported to CSV
+- 20 automated tests passed
+- SQLite integrity check passed
+- Change-history triggers verified
+
+### Remaining Scope Limitations
+
+The final dataset contains 30 jobs, below the assignment's
+100-300 posting target.
+
+Manual validation covers 8 of the requested 20 postings.
+
+USD cost estimation requires verified pricing.
+
+Job closure tracking remains incomplete.
