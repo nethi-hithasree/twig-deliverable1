@@ -1,0 +1,17 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "pricing_basis": "Google Gemini Developer API standard paid tier",
+  "pricing_url": "https://ai.google.dev/gemini-api/docs/pricing",
+  "input_usd_per_million_tokens": 0.3,
+  "output_usd_per_million_tokens": 2.5,
+  "input_tokens": 190613,
+  "output_tokens": 49491,
+  "calls": 128,
+  "jobs_returned": 122,
+  "final_stored_jobs": 30,
+  "estimated_total_usd": 0.180911,
+  "estimated_usd_per_call": 0.001413,
+  "estimated_usd_per_returned_job": 0.001483,
+  "estimated_usd_per_final_stored_job": 0.00603,
+  "note": "Paid-tier equivalent estimate, not verified billing. Excludes other infrastructure costs. Latest cached-only run made zero new API calls."
+}

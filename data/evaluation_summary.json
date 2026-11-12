@@ -1,25 +1,25 @@
 {
-  "labeled_postings": 8,
-  "assignment_requested_postings": 20,
+  "labeled_postings": 20,
+  "hackernews_postings": 10,
   "coverage": {
-    "accepted": 2,
-    "rejected": 4,
-    "not_extracted": 2
+    "accepted": 6,
+    "rejected": 10,
+    "not_extracted": 4
   },
-  "overall_field_accuracy": 0.8229,
+  "overall_field_accuracy": 0.7458,
   "field_accuracy": {
-    "company": 0.625,
+    "company": 0.7,
     "title": 0.75,
-    "seniority": 0.625,
-    "city": 0.875,
-    "country": 0.625,
-    "remote_policy": 0.75,
-    "salary_min": 1.0,
-    "salary_max": 1.0,
-    "currency": 0.875,
-    "employment_type": 0.75,
+    "seniority": 0.4,
+    "city": 0.65,
+    "country": 0.65,
+    "remote_policy": 0.8,
+    "salary_min": 0.8,
+    "salary_max": 0.85,
+    "currency": 0.75,
+    "employment_type": 0.6,
     "visa_sponsorship": 1.0,
     "posted_date": 1.0
   },
-  "methodology": "Exact-match field comparison after limited normalization. Missing predictions count as empty values. An empty gold value represents information not specified in the source. Skills excluded from this report. This is a preliminary 8-posting evaluation, below the assignment's requested 20 postings."
+  "methodology": "Exact-match comparison after limited normalization. Accepted and rejected extraction records are both evaluated. Missing predictions are treated as empty. Empty gold values represent information not specified. Skills excluded. This measures field agreement across all 20 labeled postings, not end-to-end accepted-job accuracy."
 }

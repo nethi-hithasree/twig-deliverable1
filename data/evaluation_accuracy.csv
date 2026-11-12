@@ -56,7 +56,7 @@ EVAL-05,hackernews,50339641,rejected,remote_policy,onsite,onsite,True
 EVAL-05,hackernews,50339641,rejected,salary_min,,,True
 EVAL-05,hackernews,50339641,rejected,salary_max,,,True
 EVAL-05,hackernews,50339641,rejected,currency,,,True
-EVAL-05,hackernews,50339641,rejected,employment_type,internship,intern,False
+EVAL-05,hackernews,50339641,rejected,employment_type,internship,internship,True
 EVAL-05,hackernews,50339641,rejected,visa_sponsorship,no,no,True
 EVAL-05,hackernews,50339641,rejected,posted_date,,,True
 EVAL-06,hackernews,50340551,rejected,company,helmsted,helmsted,True
@@ -95,3 +95,147 @@ EVAL-08,hackernews,50342858,rejected,currency,,,True
 EVAL-08,hackernews,50342858,rejected,employment_type,full_time,full_time,True
 EVAL-08,hackernews,50342858,rejected,visa_sponsorship,,,True
 EVAL-08,hackernews,50342858,rejected,posted_date,,,True
+EVAL-09,hackernews,50346358,not_extracted,company,govstar,,False
+EVAL-09,hackernews,50346358,not_extracted,title,data engineer,,False
+EVAL-09,hackernews,50346358,not_extracted,seniority,,,True
+EVAL-09,hackernews,50346358,not_extracted,city,,,True
+EVAL-09,hackernews,50346358,not_extracted,country,us,,False
+EVAL-09,hackernews,50346358,not_extracted,remote_policy,,,True
+EVAL-09,hackernews,50346358,not_extracted,salary_min,,,True
+EVAL-09,hackernews,50346358,not_extracted,salary_max,,,True
+EVAL-09,hackernews,50346358,not_extracted,currency,,,True
+EVAL-09,hackernews,50346358,not_extracted,employment_type,,,True
+EVAL-09,hackernews,50346358,not_extracted,visa_sponsorship,,,True
+EVAL-09,hackernews,50346358,not_extracted,posted_date,,,True
+EVAL-10,hackernews,50461075,not_extracted,company,landlord,,False
+EVAL-10,hackernews,50461075,not_extracted,title,ai engineer,,False
+EVAL-10,hackernews,50461075,not_extracted,seniority,,,True
+EVAL-10,hackernews,50461075,not_extracted,city,beaverton,,False
+EVAL-10,hackernews,50461075,not_extracted,country,us,,False
+EVAL-10,hackernews,50461075,not_extracted,remote_policy,onsite,,False
+EVAL-10,hackernews,50461075,not_extracted,salary_min,80000.0,,False
+EVAL-10,hackernews,50461075,not_extracted,salary_max,,,True
+EVAL-10,hackernews,50461075,not_extracted,currency,usd,,False
+EVAL-10,hackernews,50461075,not_extracted,employment_type,full-time,,False
+EVAL-10,hackernews,50461075,not_extracted,visa_sponsorship,,,True
+EVAL-10,hackernews,50461075,not_extracted,posted_date,,,True
+EVAL-11,greenhouse,4513122002,rejected,company,databricks,databricks,True
+EVAL-11,greenhouse,4513122002,rejected,title,senior software engineer - distributed data systems,senior software engineer - distributed data systems,True
+EVAL-11,greenhouse,4513122002,rejected,seniority,senior,senior,True
+EVAL-11,greenhouse,4513122002,rejected,city,san francisco,san francisco,True
+EVAL-11,greenhouse,4513122002,rejected,country,us,us,True
+EVAL-11,greenhouse,4513122002,rejected,remote_policy,,,True
+EVAL-11,greenhouse,4513122002,rejected,salary_min,166000.0,166000.0,True
+EVAL-11,greenhouse,4513122002,rejected,salary_max,225000.0,225000.0,True
+EVAL-11,greenhouse,4513122002,rejected,currency,usd,usd,True
+EVAL-11,greenhouse,4513122002,rejected,employment_type,,full_time,False
+EVAL-11,greenhouse,4513122002,rejected,visa_sponsorship,,,True
+EVAL-11,greenhouse,4513122002,rejected,posted_date,,,True
+EVAL-12,greenhouse,5507088002,accepted,company,databricks,databricks,True
+EVAL-12,greenhouse,5507088002,accepted,title,staff data scientist,staff data scientist,True
+EVAL-12,greenhouse,5507088002,accepted,seniority,staff,staff_plus,False
+EVAL-12,greenhouse,5507088002,accepted,city,san francisco,san francisco,True
+EVAL-12,greenhouse,5507088002,accepted,country,us,us,True
+EVAL-12,greenhouse,5507088002,accepted,remote_policy,,,True
+EVAL-12,greenhouse,5507088002,accepted,salary_min,192000.0,192000.0,True
+EVAL-12,greenhouse,5507088002,accepted,salary_max,260000.0,260000.0,True
+EVAL-12,greenhouse,5507088002,accepted,currency,usd,usd,True
+EVAL-12,greenhouse,5507088002,accepted,employment_type,,,True
+EVAL-12,greenhouse,5507088002,accepted,visa_sponsorship,,,True
+EVAL-12,greenhouse,5507088002,accepted,posted_date,,,True
+EVAL-13,greenhouse,5551532004,rejected,company,figma,figma,True
+EVAL-13,greenhouse,5551532004,rejected,title,software engineer - machine learning,software engineer - machine learning,True
+EVAL-13,greenhouse,5551532004,rejected,seniority,,senior,False
+EVAL-13,greenhouse,5551532004,rejected,city,,san francisco,False
+EVAL-13,greenhouse,5551532004,rejected,country,us,us,True
+EVAL-13,greenhouse,5551532004,rejected,remote_policy,remote,remote,True
+EVAL-13,greenhouse,5551532004,rejected,salary_min,153000.0,153000.0,True
+EVAL-13,greenhouse,5551532004,rejected,salary_max,376000.0,376000.0,True
+EVAL-13,greenhouse,5551532004,rejected,currency,usd,usd,True
+EVAL-13,greenhouse,5551532004,rejected,employment_type,full-time,full_time,False
+EVAL-13,greenhouse,5551532004,rejected,visa_sponsorship,,,True
+EVAL-13,greenhouse,5551532004,rejected,posted_date,,,True
+EVAL-14,greenhouse,5551686004,rejected,company,figma,figma,True
+EVAL-14,greenhouse,5551686004,rejected,title,software engineer - data infrastructure,software engineer - data infrastructure,True
+EVAL-14,greenhouse,5551686004,rejected,seniority,,senior,False
+EVAL-14,greenhouse,5551686004,rejected,city,,,True
+EVAL-14,greenhouse,5551686004,rejected,country,us,us,True
+EVAL-14,greenhouse,5551686004,rejected,remote_policy,remote,remote,True
+EVAL-14,greenhouse,5551686004,rejected,salary_min,153000.0,153000.0,True
+EVAL-14,greenhouse,5551686004,rejected,salary_max,376000.0,376000.0,True
+EVAL-14,greenhouse,5551686004,rejected,currency,usd,usd,True
+EVAL-14,greenhouse,5551686004,rejected,employment_type,full-time,full_time,False
+EVAL-14,greenhouse,5551686004,rejected,visa_sponsorship,,,True
+EVAL-14,greenhouse,5551686004,rejected,posted_date,,,True
+EVAL-15,greenhouse,5634684002,rejected,company,databricks,,False
+EVAL-15,greenhouse,5634684002,rejected,title,senior data scientist,,False
+EVAL-15,greenhouse,5634684002,rejected,seniority,senior,,False
+EVAL-15,greenhouse,5634684002,rejected,city,,,True
+EVAL-15,greenhouse,5634684002,rejected,country,us,,False
+EVAL-15,greenhouse,5634684002,rejected,remote_policy,,,True
+EVAL-15,greenhouse,5634684002,rejected,salary_min,123200.0,,False
+EVAL-15,greenhouse,5634684002,rejected,salary_max,218000.0,,False
+EVAL-15,greenhouse,5634684002,rejected,currency,usd,,False
+EVAL-15,greenhouse,5634684002,rejected,employment_type,,,True
+EVAL-15,greenhouse,5634684002,rejected,visa_sponsorship,,,True
+EVAL-15,greenhouse,5634684002,rejected,posted_date,,,True
+EVAL-16,greenhouse,5646855002,rejected,company,databricks,databricks,True
+EVAL-16,greenhouse,5646855002,rejected,title,staff software engineer - distributed data systems,staff software engineer - distributed data systems,True
+EVAL-16,greenhouse,5646855002,rejected,seniority,staff,staff_plus,False
+EVAL-16,greenhouse,5646855002,rejected,city,san francisco,san francisco,True
+EVAL-16,greenhouse,5646855002,rejected,country,us,us,True
+EVAL-16,greenhouse,5646855002,rejected,remote_policy,,,True
+EVAL-16,greenhouse,5646855002,rejected,salary_min,192000.0,192000.0,True
+EVAL-16,greenhouse,5646855002,rejected,salary_max,260000.0,260000.0,True
+EVAL-16,greenhouse,5646855002,rejected,currency,usd,usd,True
+EVAL-16,greenhouse,5646855002,rejected,employment_type,,,True
+EVAL-16,greenhouse,5646855002,rejected,visa_sponsorship,,,True
+EVAL-16,greenhouse,5646855002,rejected,posted_date,,,True
+EVAL-17,greenhouse,6178851004,rejected,company,figma,figma,True
+EVAL-17,greenhouse,6178851004,rejected,title,data engineer intern (2027),data engineer intern (2027),True
+EVAL-17,greenhouse,6178851004,rejected,seniority,intern,junior,False
+EVAL-17,greenhouse,6178851004,rejected,city,,san francisco / new york,False
+EVAL-17,greenhouse,6178851004,rejected,country,us,,False
+EVAL-17,greenhouse,6178851004,rejected,remote_policy,onsite,,False
+EVAL-17,greenhouse,6178851004,rejected,salary_min,46.0,,False
+EVAL-17,greenhouse,6178851004,rejected,salary_max,46.0,,False
+EVAL-17,greenhouse,6178851004,rejected,currency,usd,,False
+EVAL-17,greenhouse,6178851004,rejected,employment_type,internship,internship,True
+EVAL-17,greenhouse,6178851004,rejected,visa_sponsorship,,,True
+EVAL-17,greenhouse,6178851004,rejected,posted_date,,,True
+EVAL-18,greenhouse,6201407004,accepted,company,figma,figma,True
+EVAL-18,greenhouse,6201407004,accepted,title,data platform engineer,data platform engineer,True
+EVAL-18,greenhouse,6201407004,accepted,seniority,,senior,False
+EVAL-18,greenhouse,6201407004,accepted,city,,san francisco,False
+EVAL-18,greenhouse,6201407004,accepted,country,us,us,True
+EVAL-18,greenhouse,6201407004,accepted,remote_policy,remote,remote,True
+EVAL-18,greenhouse,6201407004,accepted,salary_min,153000.0,153000.0,True
+EVAL-18,greenhouse,6201407004,accepted,salary_max,376000.0,376000.0,True
+EVAL-18,greenhouse,6201407004,accepted,currency,usd,usd,True
+EVAL-18,greenhouse,6201407004,accepted,employment_type,full-time,full_time,False
+EVAL-18,greenhouse,6201407004,accepted,visa_sponsorship,,,True
+EVAL-18,greenhouse,6201407004,accepted,posted_date,,,True
+EVAL-19,greenhouse,7983456,accepted,company,stripe,stripe,True
+EVAL-19,greenhouse,7983456,accepted,title,"machine learning engineer, radar","machine learning engineer, radar",True
+EVAL-19,greenhouse,7983456,accepted,seniority,,senior,False
+EVAL-19,greenhouse,7983456,accepted,city,,"seattle, south san francisco",False
+EVAL-19,greenhouse,7983456,accepted,country,us,us,True
+EVAL-19,greenhouse,7983456,accepted,remote_policy,,,True
+EVAL-19,greenhouse,7983456,accepted,salary_min,,,True
+EVAL-19,greenhouse,7983456,accepted,salary_max,,,True
+EVAL-19,greenhouse,7983456,accepted,currency,,,True
+EVAL-19,greenhouse,7983456,accepted,employment_type,,full_time,False
+EVAL-19,greenhouse,7983456,accepted,visa_sponsorship,,,True
+EVAL-19,greenhouse,7983456,accepted,posted_date,,,True
+EVAL-20,greenhouse,6233043004,accepted,company,figma,figma,True
+EVAL-20,greenhouse,6233043004,accepted,title,"ai engineer, internal tools","ai engineer, internal tools",True
+EVAL-20,greenhouse,6233043004,accepted,seniority,,senior,False
+EVAL-20,greenhouse,6233043004,accepted,city,,san francisco,False
+EVAL-20,greenhouse,6233043004,accepted,country,us,us,True
+EVAL-20,greenhouse,6233043004,accepted,remote_policy,remote,remote,True
+EVAL-20,greenhouse,6233043004,accepted,salary_min,,153000.0,False
+EVAL-20,greenhouse,6233043004,accepted,salary_max,,296000.0,False
+EVAL-20,greenhouse,6233043004,accepted,currency,,usd,False
+EVAL-20,greenhouse,6233043004,accepted,employment_type,full-time,full_time,False
+EVAL-20,greenhouse,6233043004,accepted,visa_sponsorship,,,True
+EVAL-20,greenhouse,6233043004,accepted,posted_date,,,True

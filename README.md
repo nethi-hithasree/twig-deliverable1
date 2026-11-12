@@ -776,24 +776,22 @@ local execution steps.
 
 ### Manual Extraction Evaluation
 
-A 20-posting evaluation template was prepared, including
-10 Hacker News postings and 10 Greenhouse postings.
-
-Manual labeling was completed for 8 Hacker News postings.
+The evaluation contains **20 manually labeled postings**, including
+**10 Hacker News postings**.
 
 | Metric | Result |
 |---|---:|
-| Evaluation template size | 20 |
-| Manually labeled postings | 8 |
-| Accepted labeled postings | 2 |
-| Rejected labeled postings | 4 |
-| Not extracted | 2 |
-| Preliminary field-level agreement | 82.29% |
+| Evaluation postings | 20 |
+| Hacker News postings | 10 |
+| Accepted | 6 |
+| Rejected | 10 |
+| Not extracted | 4 |
+| Overall field agreement | 74.58% |
 
-The preliminary agreement measures normalized field matches
-across 12 fields, including matches where both values are
-missing. It excludes skills and should not be interpreted
-as end-to-end extraction accuracy.
+The field agreement compares 12 structured fields against manually
+labeled ground truth using limited normalization. Missing predictions
+count as empty values. Skills are excluded. This metric includes
+rejected and unextracted records and is not accepted-only accuracy.
 
 Evaluation artifacts:
 - `data/evaluation_20_template.csv`
@@ -854,3 +852,19 @@ Manual validation covers 8 of the requested 20 postings.
 USD cost estimation requires verified pricing.
 
 Job closure tracking remains incomplete.
+
+
+### Final LLM Cost Estimate
+
+Model: `gemini-3.5-flash-lite`.
+
+| Metric | Value |
+|---|---:|
+| Input tokens | 190,613 |
+| Output tokens | 49,491 |
+| Extraction calls | 128 |
+| Estimated total USD | $0.180911 |
+| Estimated USD per returned job | $0.001483 |
+| Estimated USD per final stored job | $0.006030 |
+
+Pricing: $0.30/1M input tokens and $2.50/1M output tokens (Google Gemini Developer API standard paid tier). These are estimates, not verified charges. See `data/llm_cost_estimate.json` for details.
