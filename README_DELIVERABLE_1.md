@@ -1,56 +1,84 @@
-# Twig Take-Home – Deliverable 1: Scraping and Job Processing Pipeline
+
+# Twig Take-Home - Deliverable 1
+## Job Scraping and Processing Pipeline
 
 ## 1. Project Overview
 
-This project collects candidate job postings from public sources and processes them into a structured, validated, deduplicated SQLite dataset.
+This project implements a Python-based pipeline for collecting,
+filtering, extracting, validating, deduplicating, and storing
+publicly available job postings.
 
-The pipeline supports data, machine learning, analytics, and platform engineering roles, with a focus on US and US-remote opportunities.
+The pipeline focuses on US-based and US-remote opportunities
+in data analytics, data science, machine learning, AI, and
+data/platform engineering.
 
 The workflow includes:
 
 1. Public job-source scraping
-2. Raw response caching
-3. LLM-based structured extraction
-4. Schema and location validation
-5. Evidence auditing
-6. Token usage tracking and extraction caching
-7. Job deduplication
-8. SQLite database storage
-9. Automated testing and data-quality checks
+2. Raw HTTP response caching
+3. Candidate prefiltering
+4. Gemini-based structured extraction
+5. Pydantic schema validation
+6. Location and job relevance filtering
+7. Evidence auditing
+8. Token usage and extraction caching
+9. Job deduplication
+10. SQLite database storage
+11. Automated testing and data-quality checks
 
-The scraping component is Deliverable 1. Additional processing stages have been implemented as extensions.
+The scraping component is the core of Deliverable 1.
+Additional processing stages extend the implementation.
 
 ## 2. Data Sources
 
-### Greenhouse
+### 2.1 Greenhouse
 
-Uses publicly accessible Greenhouse job-board endpoints.
+The pipeline collects public job postings using
+Greenhouse job-board endpoints.
 
-Configured companies:
+Configured companies include:
 
 - Stripe
 - Airbnb
 - Databricks
 - Figma
 
-### Lever
+### 2.2 Lever
 
-Uses publicly accessible Lever postings endpoints.
+The pipeline uses publicly accessible Lever
+job-posting endpoints.
 
-Configured companies:
+Configured companies include:
 
 - Palantir
 - Plaid
 
-### Hacker News
+Individual endpoints may be unavailable or return errors.
+The scraper logs source failures without necessarily
+stopping the entire pipeline.
 
-Collects candidate postings from the current month's *Ask HN: Who is hiring?* thread.
+### 2.3 Hacker News
 
-The scraper follows available pagination and retains candidate comments for downstream extraction.
+The pipeline collects candidate job postings from the
+monthly "Ask HN: Who is hiring?" discussion.
 
-A single Hacker News comment may describe multiple positions.
+A single comment may contain multiple positions.
+Relevant comments are retained for downstream processing.
 
-No authentication is required to access the public scraping endpoints.
+### Data Source Distribution
+
+The final SQLite dataset contains:
+
+| Source | Stored Jobs |
+|---|---:|
+| Greenhouse | 21 |
+| Hacker News | 6 |
+| Lever | 3 |
+| **Total** | **30** |
+
+Public scraping endpoints do not require authentication.
+Applicable source policies and robots.txt requirements
+must be respected.
 
 ## 3. Technology Stack
 
@@ -60,63 +88,71 @@ No authentication is required to access the public scraping endpoints.
 | Public job collection | HTTP APIs and HTML parsing |
 | Structured extraction | Google Gemini |
 | Data validation | Pydantic |
-| Local storage | SQLite |
-| Structured files | JSONL |
+| Local database | SQLite |
+| Structured output | JSONL |
 | Automated testing | pytest |
-| Environment configuration | `.env` |
+| Environment configuration | python-dotenv / .env |
 | Development environment | VS Code |
+| Version control | Git |
 
-The extraction implementation uses `gemini-3.5-flash-lite`.
+The extraction implementation uses a Gemini model
+configured in the pipeline.
 
 ## 4. Project Structure
 
 ```text
 twig_deliverable1/
-│
-├── pipeline/
-│   ├── __init__.py
-│   ├── config.py
-│   ├── scraper_utils.py
-│   ├── greenhouse.py
-│   ├── lever.py
-│   ├── hackernews.py
-│   ├── filters.py
-│   ├── main.py
-│   ├── schemas.py
-│   ├── extractor.py
-│   ├── validator.py
-│   ├── batch_extractor.py
-│   ├── deduplication.py
-│   ├── database.py
-│   ├── cost_tracker.py
-│   └── evidence_audit.py
-│
-├── tests/
-│   ├── test_filters.py
-│   └── test_pipeline.py
-│
-├── data/
-│   ├── scraped_jobs.jsonl
-│   ├── extracted_jobs.jsonl
-│   ├── rejected_jobs.jsonl
-│   ├── deduplicated_jobs.jsonl
-│   ├── duplicate_jobs.jsonl
-│   ├── llm_usage.jsonl
-│   ├── cost_report.json
-│   ├── evidence_audit.jsonl
-│   ├── twig_jobs.db
-│   ├── raw/
-│   └── extraction_cache/
-│
-├── logs/
-├── requirements.txt
-├── .env.example
-├── .gitignore
-├── Makefile
-└── README_DELIVERABLE_1.md
+|
+|-- pipeline/
+|   |-- __init__.py
+|   |-- config.py
+|   |-- scraper_utils.py
+|   |-- greenhouse.py
+|   |-- lever.py
+|   |-- hackernews.py
+|   |-- filters.py
+|   |-- candidate_prefilter.py
+|   |-- main.py
+|   |-- schemas.py
+|   |-- extractor.py
+|   |-- validator.py
+|   |-- batch_extractor.py
+|   |-- deduplication.py
+|   |-- database.py
+|   |-- cost_tracker.py
+|   |-- evidence_audit.py
+|   |-- logging_config.py
+|
+|-- tests/
+|   |-- test_candidate_prefilter.py
+|   |-- test_filters.py
+|   |-- test_pipeline.py
+|   |-- test_robots.py
+|
+|-- data/
+|   |-- scraped_jobs.jsonl
+|   |-- prefiltered_jobs.jsonl
+|   |-- extracted_jobs.jsonl
+|   |-- rejected_jobs.jsonl
+|   |-- deduplicated_jobs.jsonl
+|   |-- duplicate_jobs.jsonl
+|   |-- llm_usage.jsonl
+|   |-- cost_report.json
+|   |-- evidence_audit.jsonl
+|   |-- twig_jobs.db
+|   |-- raw/
+|   |-- extraction_cache/
+|
+|-- logs/
+|-- requirements.txt
+|-- .env.example
+|-- .gitignore
+|-- Makefile
+|-- README_DELIVERABLE_1.md
 ```
 
-Some output files and cache directories are generated at runtime.
+Some output files and cache directories are generated
+during execution.
 
 ## 5. Installation and Setup
 
@@ -148,9 +184,9 @@ python -m pip install -r requirements.txt
 
 ### Step 4: Configure environment variables
 
-Copy `.env.example` to `.env`.
+Copy the example configuration:
 
-Windows PowerShell:
+Windows:
 
 ```powershell
 Copy-Item .env.example .env
@@ -162,75 +198,132 @@ macOS/Linux:
 cp .env.example .env
 ```
 
-The public scraping stage does not require an API key.
+Configure the required Gemini API credentials
+according to pipeline/config.py.
 
-Gemini-based extraction requires a valid Google Gemini API key configured according to `pipeline/config.py` and the local `.env` configuration.
+The scraping stage does not require a Gemini API key.
 
-Never commit API keys or the real `.env` file.
+Never commit actual API keys or the .env file.
 
-## 6. Run the Scraper
+## 6. Run the Job Scraper
 
-Execute from the project root:
+Execute the scraper from the project root:
 
 ```bash
 python -m pipeline.main
 ```
 
-Alternatively:
+Alternatively, where Make is available:
 
 ```bash
 make run
 ```
 
-The scraper collects candidate postings from Greenhouse, Lever, and Hacker News.
+The scraper collects candidate postings from
+Greenhouse, Lever, and Hacker News.
 
-Output:
+Primary output:
 
 ```text
 data/scraped_jobs.jsonl
 ```
 
-Raw HTTP responses are cached under:
+Raw HTTP responses may be cached under:
 
 ```text
 data/raw/
 ```
 
-Each source record retains source information, raw job content, and collection metadata.
+Each source record retains available source identifiers,
+URLs, raw job content, and collection metadata.
 
-## 7. Structured Job Extraction
+## 7. Candidate Prefiltering
 
-Gemini transforms raw source postings into structured job information.
+The prefiltering stage identifies potentially relevant
+job postings before expensive LLM extraction.
 
-Extracted fields include:
+It prioritizes opportunities associated with:
 
-- Company
+- Data analytics
+- Data science
+- Machine learning
+- Artificial intelligence
+- Data engineering
+- Relevant platform and infrastructure engineering
+
+Candidate records are categorized by priority.
+
+Observed candidate counts:
+
+| Metric | Count |
+|---|---:|
+| Prefiltered candidate rows | 587 |
+| High-priority rows | 390 |
+| Needs-review rows | 197 |
+| Unique extraction candidates | 290 |
+
+The prefiltered JSONL file contains repeated source
+identities from collection history.
+
+The batch extraction loader deduplicates source
+identities before processing.
+
+Primary output:
+
+```text
+data/prefiltered_jobs.jsonl
+```
+
+## 8. Gemini-Based Structured Extraction
+
+Google Gemini converts unstructured job descriptions
+into structured job information.
+
+Extracted fields may include:
+
+- Company name
 - Job title
 - Seniority
 - City and country
 - Remote policy
 - Salary range and currency
 - Employment type
-- Skills
-- Visa sponsorship
+- Required skills
+- Visa sponsorship information
 - Posted date
 - Supporting evidence
 
-The extraction stage uses Pydantic schemas to validate the model response.
+Missing or unsupported information should remain
+unknown rather than being fabricated.
 
-Run a small batch:
+### Run a Small Batch
 
 ```bash
 python -m pipeline.batch_extractor --limit 10
 ```
 
-Process all available records:
+### Process All Available Candidates
 
 ```bash
 python -m pipeline.batch_extractor --limit 0
 ```
 
-Outputs:
+### Rebuild Outputs from Existing Cache Only
+
+```bash
+python -m pipeline.batch_extractor --limit 0 --cache-only
+```
+
+The cache-only command avoids new Gemini API requests
+and uses available cached extraction results.
+
+### Limit New API Requests
+
+```bash
+python -m pipeline.batch_extractor --limit 0 --max-api-requests 5
+```
+
+### Extraction Outputs
 
 ```text
 data/extracted_jobs.jsonl
@@ -238,38 +331,68 @@ data/rejected_jobs.jsonl
 data/llm_usage.jsonl
 ```
 
-Extraction results are cached to reduce repeated Gemini API requests.
+Extraction results are cached using source identity,
+source content, and extraction configuration.
 
-The pipeline can reuse cached results when the source content and extraction configuration match.
+Important: Running the batch extractor can rewrite
+the extraction output files. Back up important
+results before performing limited experiments.
 
-## 8. Validation and Evidence
+### Latest Extraction Results
 
-The validation layer checks structured extraction results against the original source text.
+| Metric | Count |
+|---|---:|
+| Unique extraction candidates | 290 |
+| Candidates with cached results | 127 |
+| Accepted extracted jobs | 31 |
+| Rejected extraction entries | 106 |
+| Candidates without cached results | 163 |
+| Processing errors | 0 |
+
+The extraction stage is partially complete.
+
+127 of 290 unique source candidates have cached
+extraction results.
+
+The remaining 163 candidates have not yet been
+processed by Gemini.
+
+## 9. Validation and Evidence Auditing
+
+Structured extraction results are validated using
+Pydantic schemas and source-text checks.
 
 Validation includes:
 
-- Job-title relevance
-- US location requirements
-- Location ambiguity
+- Relevant job titles
+- US location eligibility
+- Remote-work eligibility
 - Schema compatibility
+- Missing required fields
 - Supporting evidence
-- Missing or unsupported values
-
-Missing information is preserved as unknown rather than automatically fabricated.
+- Unsupported or ambiguous extracted values
 
 Rejected records are retained for inspection.
 
-The evidence-audit module can be executed using:
+Run evidence auditing:
 
 ```bash
 python -m pipeline.evidence_audit
 ```
 
-Evidence auditing helps identify unsupported or missing evidence for extracted fields.
+Evidence audit output:
 
-## 9. Token Usage and Cost Tracking
+```text
+data/evidence_audit.jsonl
+```
 
-The extraction pipeline records token usage for Gemini processing.
+Evidence checks help identify unsupported claims,
+but do not guarantee that every extracted value
+is factually correct.
+
+## 10. Token Usage and Cost Tracking
+
+The pipeline records Gemini extraction usage.
 
 Tracked information includes:
 
@@ -277,9 +400,10 @@ Tracked information includes:
 - Input tokens
 - Output tokens
 - Total tokens
-- Cache usage
+- Cached processing
+- New API requests
 
-Run:
+Run the cost tracker:
 
 ```bash
 python -m pipeline.cost_tracker
@@ -291,17 +415,20 @@ Output:
 data/cost_report.json
 ```
 
-The cost tracker distinguishes cached processing from new API usage.
+USD cost estimates depend on correctly configured
+model pricing.
 
-Estimated USD costs are reported only when model pricing is configured.
+When pricing is unavailable, cost values should
+remain unknown rather than being invented.
 
-Otherwise, cost fields remain unknown rather than using unsupported estimates.
+## 11. Job Deduplication
 
-## 10. Deduplication
+Deduplication identifies repeated job postings using
+normalized job attributes.
 
-Deduplication compares normalized job attributes, including:
+Matching attributes include:
 
-- Company
+- Company name
 - Job title
 - City
 - Country
@@ -320,21 +447,35 @@ data/deduplicated_jobs.jsonl
 data/duplicate_jobs.jsonl
 ```
 
-The implementation uses conservative normalized matching.
-
-Potential duplicate requisitions should be reviewed when separate openings may share the same company, title, and location.
-
-### Observed Results
+### Verified Deduplication Results
 
 | Metric | Count |
 |---|---:|
-| Extracted accepted jobs | 21 |
-| Unique jobs after deduplication | 20 |
-| Potential duplicates removed | 1 |
+| Input accepted jobs | 31 |
+| Unique jobs | 30 |
+| Duplicates removed | 1 |
 
-The detected duplicate candidate was an Airbnb Senior Machine Learning Engineer, Trust posting in San Francisco.
+### Duplicate Identified
 
-## 11. SQLite Database
+Company: Airbnb
+
+Position: Senior Machine Learning Engineer, Trust
+
+Location: San Francisco
+
+Reason:
+
+```text
+matching_company_title_location
+```
+
+The implementation uses conservative normalized
+matching.
+
+Distinct requisitions sharing the same company,
+title, and location may require manual review.
+
+## 12. SQLite Database
 
 The deduplicated dataset is stored in SQLite.
 
@@ -344,43 +485,90 @@ Run:
 python -m pipeline.database
 ```
 
-Output:
+Database file:
 
 ```text
 data/twig_jobs.db
 ```
 
-The database preserves structured job fields, source identifiers, source URLs, evidence, and validation warnings.
+The database stores structured job fields,
+source identifiers, URLs, evidence, and
+validation-related information.
 
-An upsert operation prevents duplicate rows for the same `job_key` during repeated imports.
+The implementation supports upsert behavior
+to prevent repeated imports from creating
+duplicate records for the same job key.
 
-### Database Verification
+### Verified Database Results
 
 | Check | Result |
 |---|---|
-| Total stored jobs | 20 |
-| Unique job keys | 20 |
+| Input unique jobs | 30 |
+| Total stored jobs | 30 |
 | SQLite integrity | OK |
 
-## 12. Data-Quality Results
+### Source Distribution
 
-The final stored dataset was checked for missing required information and malformed skills JSON.
-
-| Quality check | Issues |
+| Source | Count |
 |---|---:|
-| Missing company | 0 |
-| Missing title | 0 |
-| Missing city | 0 |
-| Missing country | 0 |
-| Missing source URL | 0 |
-| Missing evidence | 0 |
-| Invalid skills JSON | 0 |
+| Greenhouse | 21 |
+| Hacker News | 6 |
+| Lever | 3 |
+| **Total** | **30** |
 
-These checks confirm structural completeness of the stored records. They do not independently establish that every extracted field is factually accurate.
+### Database Integrity Verification
 
-## 13. Automated Testing
+```python
+import sqlite3
 
-Tests use pytest.
+conn = sqlite3.connect("data/twig_jobs.db")
+
+count = conn.execute(
+    "SELECT COUNT(*) FROM jobs"
+).fetchone()[0]
+
+integrity = conn.execute(
+    "PRAGMA integrity_check"
+).fetchone()[0]
+
+print("Total jobs:", count)
+print("Database integrity:", integrity)
+
+conn.close()
+```
+
+Verified output:
+
+```text
+Total jobs: 30
+Database integrity: ok
+```
+
+## 13. Data Quality
+
+The pipeline includes validation of required fields,
+structured values, and supporting evidence.
+
+Quality checks are intended to identify:
+
+- Missing company names
+- Missing job titles
+- Invalid location values
+- Missing source URLs
+- Invalid structured skills
+- Missing evidence
+- Unsupported extracted fields
+
+The current database has passed its SQLite
+integrity check.
+
+A separate final field-level quality audit should
+be performed before claiming zero missing values
+across every required field.
+
+## 14. Automated Testing
+
+Automated tests are implemented using pytest.
 
 Run:
 
@@ -388,96 +576,197 @@ Run:
 python -m pytest tests -v
 ```
 
-Implemented tests cover:
+The test suite covers areas including:
 
-- Relevant job-title filtering
-- US location and remote eligibility
-- Hacker News candidate filtering
-- Visa sponsorship normalization
-- Evidence normalization
-- Job deduplication
-- SQLite upsert behavior
+- Candidate prefiltering
+- Job relevance filtering
+- US location eligibility
+- Hacker News filtering
+- Structured validation
+- Deduplication
+- SQLite behavior
+- Robots.txt-related behavior
 
 ### Latest Test Results
 
 ```text
-7 passed in 0.21s
+20 passed
 ```
 
-All seven implemented automated tests passed in the latest local execution.
+All 20 automated tests passed in the latest
+reported local execution.
 
-## 14. Reliability and Reproducibility
+Passing tests verify the implemented test cases;
+they do not guarantee complete production coverage.
 
-The pipeline includes several reliability mechanisms:
+## 15. Reliability and Reproducibility
 
-- HTTP response caching
-- Per-domain request spacing
-- Retry handling for network requests
-- Source-level failure isolation
-- Preservation of raw source records
-- LLM extraction caching
-- Schema validation
-- Rejected-record tracking
-- Token usage logging
-- Stable deduplication fingerprints
-- SQLite integrity verification
+The pipeline includes:
 
-These mechanisms reduce unnecessary network requests and support debugging and repeatable local processing.
+1. HTTP response caching
+2. Source-level failure isolation
+3. Network retry handling
+4. Candidate prefiltering
+5. Stable source identity deduplication
+6. Gemini extraction caching
+7. Pydantic schema validation
+8. Rejected-record tracking
+9. Token usage logging
+10. Evidence auditing
+11. Job-level deduplication
+12. SQLite upsert behavior
+13. Automated testing
 
-## 15. Known Limitations
+These mechanisms reduce unnecessary API calls
+and support repeatable processing.
 
-1. **Robots.txt compliance:** Explicit robots.txt checking is not yet implemented. HTML scraping policy checks and applicable API terms must be verified before final submission or production use.
+## 16. Known Limitations
 
-2. **Location extraction:** Multi-city, remote, and ambiguous location descriptions can require manual review.
+### 16.1 Partial Extraction Coverage
 
-3. **LLM accuracy:** Structured extraction may contain omissions or unsupported values. Evidence checks reduce this risk but do not eliminate it.
+Only 127 of 290 unique candidates have cached
+extraction results.
 
-4. **API quotas:** Gemini free-tier rate limits can interrupt uncached extraction. Cached records can be reused without repeating successful calls.
+163 candidates remain unprocessed.
 
-5. **Deduplication:** Exact normalized company/title/location matching may miss near-duplicates or merge distinct requisitions with identical attributes.
+### 16.2 API Quotas
 
-6. **Hacker News parsing:** Changes to thread structure, pagination, or markup may require scraper updates.
+Gemini API rate limits may interrupt extraction
+of uncached candidates.
 
-7. **Cost reporting:** USD estimates require an explicit pricing configuration.
+The extraction cache helps avoid repeated
+successful API requests.
 
-8. **Test coverage:** Seven automated tests pass, but broader integration testing and live-source validation are still recommended.
+### 16.3 LLM Accuracy
 
-9. **Dataset scope:** The collected records are a candidate sample, not a comprehensive inventory of all available US jobs.
+LLM extraction may omit fields or produce
+unsupported values.
 
-## 16. Observed Pipeline Summary
+Schema validation and evidence auditing reduce
+this risk but cannot eliminate it.
 
-The latest full candidate dataset contained:
+### 16.4 Location Ambiguity
 
-| Stage | Result |
+Remote, hybrid, multi-city, and ambiguous
+location descriptions may require manual review.
+
+### 16.5 Deduplication
+
+Normalized company/title/location matching
+may miss near-duplicates or merge distinct
+job requisitions.
+
+### 16.6 Hacker News Parsing
+
+Changes to discussion structure, pagination,
+or HTML markup may require scraper updates.
+
+### 16.7 Source Availability
+
+Public job-board endpoints may return errors,
+including HTTP 404 responses.
+
+Individual source failures should be logged
+and handled without unnecessary pipeline failure.
+
+### 16.8 Scraping Compliance
+
+Robots.txt handling and compliance with
+applicable source terms should be verified
+before production deployment.
+
+### 16.9 Dataset Scope
+
+The collected records represent a candidate
+sample and should not be interpreted as a
+complete inventory of US job opportunities.
+
+## 17. Observed Pipeline Summary
+
+The latest verified processing results are:
+
+| Pipeline Stage | Result |
 |---|---:|
-| Raw source candidate records | 102 |
-| Accepted extracted jobs | 21 |
-| Deduplicated jobs | 20 |
-| SQLite stored jobs | 20 |
-| Automated tests passed | 7 |
+| Prefiltered candidate rows | 587 |
+| Unique extraction candidates | 290 |
+| Cached extraction results | 127 |
+| Accepted extracted jobs | 31 |
+| Rejected extraction entries | 106 |
+| Remaining uncached candidates | 163 |
+| Deduplicated jobs | 30 |
+| SQLite stored jobs | 30 |
+| Automated tests passed | 20 |
+| SQLite integrity | OK |
 
-The 102 scraped candidates should not be interpreted as 102 unique jobs.
+The 587 prefiltered rows contain repeated
+source identities.
 
-Rejected records include irrelevant roles, ambiguous or unsupported locations, extraction failures, and other validation outcomes.
+The extraction loader reduces these to
+290 unique candidate identities.
 
-## 17. Security and Submission
+The latest available cached results cover
+127 of those candidates.
 
-The following should not be included in a public repository or submission archive:
+After validation, 31 jobs were accepted.
+Deduplication removed one duplicate, leaving
+30 unique jobs stored in SQLite.
 
-- `.env` containing API credentials
-- Virtual environment folders
-- Python bytecode and `__pycache__`
+## 18. Security and Submission
+
+The following files should not be included
+in a public repository:
+
+- .env containing API credentials
+- Virtual environment directories
+- Python bytecode and cache folders
+- Private extraction caches
+- Temporary development backups
+- Sensitive logs
 - Local IDE configuration containing secrets
-- Temporary files and sensitive logs
 
-The `.env.example` file may be included if it contains only placeholder values.
+The .env.example file may be included when
+it contains only placeholder values.
 
-Submission artifacts should preserve sufficient documentation, code, test coverage, and permitted sample outputs to allow the reviewer to understand and reproduce the pipeline.
+The .gitignore file excludes development
+artifacts and sensitive configuration.
 
-## 18. Conclusion
+Submission artifacts should include sufficient
+code, documentation, tests, and permitted sample
+outputs for reproducibility.
 
-Twig Deliverable 1 provides a working public-source job collection pipeline, extended with structured Gemini extraction, schema validation, evidence checking, caching, deduplication, and SQLite storage.
+## 19. Conclusion
 
-The latest local run produced 20 deduplicated job records with complete core fields, passed SQLite integrity checks, and passed all seven implemented automated tests.
+Twig Deliverable 1 provides a functional
+public-source job scraping and processing pipeline.
 
-Remaining work includes verifying robots.txt compliance, reviewing potential duplicate requisitions, and finalizing the submission package.
+The implementation integrates:
+
+- Greenhouse, Lever, and Hacker News scraping
+- Candidate prefiltering
+- Gemini-based structured extraction
+- Pydantic validation
+- Evidence auditing
+- Token usage tracking
+- Extraction caching
+- Job deduplication
+- SQLite database storage
+- Automated testing
+
+The latest verified run produced:
+
+- 31 accepted extracted jobs
+- 30 unique jobs after deduplication
+- 30 jobs stored in SQLite
+- 20 passing automated tests
+- Successful SQLite integrity verification
+
+Gemini extraction currently covers 127 of
+290 unique candidates.
+
+The remaining 163 candidates can be processed
+in additional batches, subject to API quotas.
+
+The project demonstrates an end-to-end workflow
+for collecting and processing public job data,
+with documented limitations and reproducible
+local execution steps.

@@ -1,5 +1,9 @@
 
-# Environment variables and API keys
+# ==========================================
+# Twig Deliverable 1 - Git Ignore Rules
+# ==========================================
+
+# Environment variables and API credentials
 .env
 .env.*
 !.env.example
@@ -12,13 +16,23 @@ env/
 # Python cache files
 __pycache__/
 *.py[cod]
+*$py.class
 .pytest_cache/
 .mypy_cache/
+.ruff_cache/
 
-# Logs
-logs/*
-!logs/.gitkeep
-*.log
+# IDE and editor settings
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# Data and Extraction Cache
+# ==========================================
 
 # Raw HTTP response cache
 data/raw/*
@@ -27,22 +41,79 @@ data/raw/*
 # Gemini extraction cache
 data/extraction_cache/
 
-# Temporary and backup files
-*.tmp
-*_backup.jsonl
-*_before_debug.jsonl
-*_before_retry.jsonl
-*_before_visa_fix.jsonl
-*_pilot.jsonl
+# ==========================================
+# Temporary and Backup Files
+# ==========================================
 
-# Incomplete development backups
-pipeline/batch_extractor_incomplete_backup.py
+# Extraction backups
+data/*_backup.jsonl
+data/*_before_*.jsonl
+data/*_small_test.jsonl
+data/*_pilot.jsonl
 
-# Local test outputs
+# Local extraction debugging output
 extraction_test_output.txt
 
-# Editor and OS files
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
+# Incomplete development backup
+pipeline/batch_extractor_incomplete_backup.py
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# ==========================================
+# Logs
+# ==========================================
+
+logs/*
+!logs/.gitkeep
+*.log
+
+# ==========================================
+# Test and Coverage Reports
+# ==========================================
+
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+junit.xml
+
+# ==========================================
+# Python Build Files
+# ==========================================
+
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ==========================================
+# Submission Files - Keep Tracked
+# ==========================================
+
+# Source code:
+# pipeline/*.py
+# tests/*.py
+
+# Configuration:
+# .env.example
+# requirements.txt
+# Makefile
+
+# Documentation:
+# README_DELIVERABLE_1.md
+
+# Dataset outputs:
+# data/scraped_jobs.jsonl
+# data/prefiltered_jobs.jsonl
+# data/extracted_jobs.jsonl
+# data/rejected_jobs.jsonl
+# data/deduplicated_jobs.jsonl
+# data/duplicate_jobs.jsonl
+# data/llm_usage.jsonl
+# data/cost_report.json
+# data/evidence_audit.jsonl
+# data/twig_jobs.db
