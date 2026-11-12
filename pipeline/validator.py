@@ -46,6 +46,15 @@ US_CITY_NAMES = {
     "phoenix",
     "san jose",
     "san diego",
+    "mountain view",
+    "palo alto",
+    "menlo park",
+    "sunnyvale",
+    "redwood city",
+    "philadelphia",
+    "raleigh",
+    "durham",
+    "portland",
 }
 
 
@@ -115,7 +124,7 @@ def parse_us_locations(location_text):
         return [], []
 
     parts = re.split(
-        r"\s*[,;|]\s*",
+        r"\s*[,;|/]\s*",
         location_text
     )
 

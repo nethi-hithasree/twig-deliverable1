@@ -20,7 +20,7 @@ ROLE_PATTERNS = [
     r"\bmlops\s+engineer\b",
     r"\bai\s+engineer\b",
     r"\b(?:data|ml|analytics)\s+infrastructure\s+engineer\b",
-    r"\bsoftware\s+engineer\s*[-/,]\s*(?:data|ml|platform|infrastructure)\b",
+    r"\bsoftware\s+engineer\s*[-/,]\s*(?:data|ml|platform|infrastructure|machine\s+learning|distributed\s+data\s+systems)\b",
 ]
 
 ROLE_REGEX = re.compile(
