@@ -1,0 +1,45 @@
+{
+  "source": "greenhouse",
+  "original_title": "Backend Engineer, Developer & End-user Experience Platform",
+  "extracted_jobs": {
+    "jobs": [
+      {
+        "company": "stripe",
+        "title": "Backend Engineer, Developer & End-user Experience Platform",
+        "seniority": null,
+        "city": "Toronto, San Francisco",
+        "country": "Canada, US",
+        "remote_policy": "remote",
+        "salary_min": null,
+        "salary_max": null,
+        "currency": null,
+        "employment_type": "full_time",
+        "skills": [
+          "APIs",
+          "gRPC",
+          "GraphQL",
+          "Docker",
+          "Kubernetes",
+          "AWS"
+        ],
+        "visa_sponsorship": null,
+        "posted_date": null,
+        "evidence": {
+          "company": "Company: stripe",
+          "title": "Title: Backend Engineer, Developer & End-user Experience Platform",
+          "city": "Location: Toronto Canada, San Francisco, Remote in US, Remote in Canada",
+          "country": "Location: Toronto Canada, San Francisco, Remote in US, Remote in Canada",
+          "remote_policy": "Location: Toronto Canada, San Francisco, Remote in US, Remote in Canada",
+          "employment_type": "Responsibilities Scope, design, build, and maintain APIs, services, and large-scale systems that reliably and efficiently handle billions of money movement requests",
+          "skills": "Preferred qualifications Experience with large-scale financial tracking systems Good understanding and practical knowledge in cloud-based services (e.g., gRPC, GraphQL, Docker and Kubernetes, cloud services such as AWS, etc.)"
+        }
+      }
+    ]
+  },
+  "usage": {
+    "model": "gemini-3.5-flash-lite",
+    "input_tokens": 1157,
+    "output_tokens": 372,
+    "total_tokens": 1529
+  }
+}

@@ -1,0 +1,48 @@
+
+# Environment variables and API keys
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Logs
+logs/*
+!logs/.gitkeep
+*.log
+
+# Raw HTTP response cache
+data/raw/*
+!data/raw/.gitkeep
+
+# Gemini extraction cache
+data/extraction_cache/
+
+# Temporary and backup files
+*.tmp
+*_backup.jsonl
+*_before_debug.jsonl
+*_before_retry.jsonl
+*_before_visa_fix.jsonl
+*_pilot.jsonl
+
+# Incomplete development backups
+pipeline/batch_extractor_incomplete_backup.py
+
+# Local test outputs
+extraction_test_output.txt
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

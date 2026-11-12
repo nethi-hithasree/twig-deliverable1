@@ -1,0 +1,14 @@
+{
+  "records": 10,
+  "model": [
+    "gemini-3.5-flash-lite"
+  ],
+  "input_tokens": 13569,
+  "output_tokens": 2665,
+  "total_tokens": 16234,
+  "cache_hits": 10,
+  "new_api_calls": 0,
+  "pricing_configured": false,
+  "historical_estimated_cost_usd": null,
+  "latest_run_estimated_cost_usd": null
+}
